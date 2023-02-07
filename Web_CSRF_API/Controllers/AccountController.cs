@@ -8,32 +8,38 @@ namespace Web_CSRF_API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[AutoValidateAntiforgeryToken]
+    [ValidateAntiForgeryToken]
     public class AccountController : ControllerBase
     {
-        private IAntiforgery _antiForgery;
         private ResponseModel responseModel;
-        public AccountController(IAntiforgery antiForgery)
-        {
-            _antiForgery = antiForgery;
-        }
 
-        [HttpGet("GetCustomers")]
-        [ValidateAntiForgeryToken]
+        [HttpGet("GetCustomer")]
+        //[ValidateAntiForgeryToken]
         public IActionResult Get()
         {
             responseModel = new ResponseModel();
             responseModel.IsSuccess = true;
-            responseModel.Content = "GetMethod";
+            responseModel.Content = "GetCustomer Method";
             return Ok(responseModel);
         }
 
         [HttpPost("PostCustomer")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public IActionResult Post([FromBody] string value)
         {
             responseModel = new ResponseModel();
             responseModel.IsSuccess = true;
-            responseModel.Content = "PostMethod";
+            responseModel.Content = "PostCustomer Method";
+            return Ok(responseModel);
+        }
+
+        [HttpGet("GetDetails")]
+        [IgnoreAntiforgeryToken]
+        public IActionResult GetDetails()
+        {
+            responseModel = new ResponseModel();
+            responseModel.IsSuccess = true;
+            responseModel.Content = "GetDetails Method";
             return Ok(responseModel);
         }
     }

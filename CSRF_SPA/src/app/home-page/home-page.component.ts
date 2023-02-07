@@ -9,20 +9,24 @@ import { HttpServiceService } from '../Services/http-service.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private _httpServiceService: HttpServiceService ) { }
+  getResponse: string = "";
+  postResponse: string = "";
+  constructor(private _httpServiceService: HttpServiceService) { }
 
   ngOnInit(): void {
   }
 
-getMethodAPI(){
-  this._httpServiceService.get('api/Account','GetCustomers').subscribe(response => {
-    console.log(response);
-  })
-}
+  getMethodAPI() {
+    this._httpServiceService.get('api/Account', 'GetCustomer').subscribe(response => {
+      this.getResponse = response.content;
+      console.log(response);
+    })
+  }
 
-postMethodAPI(){
-  this._httpServiceService.post('values', 'api/Account','PostCustomer').subscribe(response => {
-    console.log(response);
-  })
-}
+  postMethodAPI() {
+    this._httpServiceService.post('values', 'api/Account', 'PostCustomer').subscribe(response => {
+      this.postResponse = response.content;
+      console.log(response);
+    })
+  }
 }
