@@ -12,24 +12,27 @@ namespace Web_CSRF_API.Controllers
     public class AccountController : ControllerBase
     {
         private ResponseModel responseModel;
+        static List<string> customers = new List<string>();
 
-        [HttpGet("GetCustomer")]
+        [HttpGet("GetCustomers")]
         //[ValidateAntiForgeryToken]
         public IActionResult Get()
         {
             responseModel = new ResponseModel();
             responseModel.IsSuccess = true;
-            responseModel.Content = "GetCustomer Method";
+            responseModel.Content = Newtonsoft.Json.JsonConvert.SerializeObject(customers);
             return Ok(responseModel);
         }
 
         [HttpPost("PostCustomer")]
         //[ValidateAntiForgeryToken]
-        public IActionResult Post([FromBody] string value)
+        public IActionResult Post([FromBody] string customerName)
         {
+            
+            customers.Add(customerName);
             responseModel = new ResponseModel();
             responseModel.IsSuccess = true;
-            responseModel.Content = "PostCustomer Method";
+            responseModel.Content = customerName + " Added successfully.";
             return Ok(responseModel);
         }
 

@@ -11,22 +11,29 @@ export class HomePageComponent implements OnInit {
 
   getResponse: string = "";
   postResponse: string = "";
+  customerName: string = '';
+  customerAddress: string = '';
   constructor(private _httpServiceService: HttpServiceService) { }
 
   ngOnInit(): void {
   }
 
   getMethodAPI() {
-    this._httpServiceService.get('api/Account', 'GetCustomer').subscribe(response => {
+    this._httpServiceService.get('api/Account', 'GetCustomers').subscribe(response => {
       this.getResponse = response.content;
       console.log(response);
     })
   }
 
   postMethodAPI() {
-    this._httpServiceService.post('values', 'api/Account', 'PostCustomer').subscribe(response => {
-      this.postResponse = response.content;
-      console.log(response);
-    })
+    if (this.customerName != '') {
+      this._httpServiceService.post(this.customerName, 'api/Account', 'PostCustomer').subscribe(response => {
+        this.postResponse = response.content;
+        this.customerName = '';
+        console.log(response);
+      })
+    } else {
+      this.postResponse = 'Please enter the customer name.'
+    }
   }
 }

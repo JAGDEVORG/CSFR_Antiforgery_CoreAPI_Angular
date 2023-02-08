@@ -2,58 +2,77 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Login</title>
 </head>
 
 <body>
-	<section class="h-100">
-		<div class="container h-100">
-			<div class="row justify-content-sm-center h-100">
-				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-					<div class="card shadow-lg">
+    <section class="h-100">
+        <div class="container h-100">
+            <div class="row justify-content-sm-center h-100">
+                <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                    <div class="card shadow-lg">
                         <div class="card-footer py-3 border-0">
-							<div class="text-center">
-								<h1 class="fs-4 card-title fw-bold mb-4">CSRF -  Cross-Site Request Forgery</h1>
-							</div>
-						</div>
-						<div class="card-body p-5">
-                            
+                            <div class="text-center">
+                                <h1 class="fs-4 card-title fw-bold mb-4">CSRF - Cross-Site Request Forgery</h1>
+                            </div>
+                        </div>
+                        <div class="card-body p-5">
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="email">Get API Call Method</label>
-                                <button type="button" class="btn btn-primary ms-auto form-control" (click)="getMethodAPI()">
-                                    Get Customer	
+                                <label class="mb-2 text-muted">
+                                    <h5>Customers Get API</h5>
+                                </label>
+                                <button type="button" class="btn btn-primary ms-auto form-control"
+                                    (click)="getMethodAPI()">
+                                    Get All Customers
                                 </button>
                                 <div class="card-footer py-3 border-0">
                                     <div class="text-center">
-                                       API Response :  {{getResponse}}
+                                        {{getResponse}}
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="email">Post API Call Method</label>
-                                <button type="button" class="btn btn-primary ms-auto form-control" (click)="postMethodAPI()">
-                                    Post Customer	
+                                <label class="mb-2 text-muted">
+                                    <h5>Customer Post API</h5>
+                                </label>
+                                <div class="mb-3">
+                                    <label class="mb-2 text-muted" for="email">Name<sup
+                                            class="winput-error">*</sup></label>
+                                    <input id="name" type="text" class="form-control" name="name"
+                                    [(ngModel)]="customerName" #name="ngModel" autofocus>
+                                </div>
+                                <!-- <div class="mb-3">
+                                    <label class="mb-2 text-muted" for="email"> Address<sup
+                                            class="winput-error">*</sup></label>
+                                    <input id="address" type="text" class="form-control" name="address" 
+                                    [(ngModel)]="customerAddress" #address="ngModel" autofocus>
+                                </div> -->
+
+                                <button type="button" class="btn btn-primary ms-auto form-control"
+                                    (click)="postMethodAPI()">
+                                    Add New Customer
                                 </button>
                                 <div class="card-footer py-3 border-0">
                                     <div class="text-center">
-                                        API Response :  {{postResponse}}
+                                        {{postResponse}}
                                     </div>
                                 </div>
                             </div>
-							
-						</div>
-						<div class="card-footer py-3 border-0">
-							<div class="text-center">
-								Don't have an account? 
-							</div>
-						</div>
-					</div>
-				
-				</div>
-			</div>
-		</div>
-	</section>
+
+                        </div>
+                        <div class="card-footer py-3 border-0">
+                            <div class="text-center">
+                                Don't have an account?
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>
